@@ -88,5 +88,6 @@ class ArticleTest extends TestCase
             ->assertJsonStructure([
                 '*' => ['id', 'body', 'title', 'created_at', 'updated_at'],
             ]);
+            //git
     }
 }
