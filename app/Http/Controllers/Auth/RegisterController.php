@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -70,27 +69,5 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-    }
-
-
-    public function register(Request $req) {
-        $this->validator($req->all()) -> validate();
-
-        event(new Registered($user = $this->create($request->all())));
-
-        $this->guard()->login($user);
-
-        return $this->registered($req, $user) ?: redirect($this->redirectPath());
-
-    }
-
-    protected function registered(Request $req, $user) {
-        $user->generateToken();
-
-        return response()->json(['data' => $user->toArray()], 201);
-    }
-
-    protected function redirectPath() {
-        return $redirectTo;
     }
 }

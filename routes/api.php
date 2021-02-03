@@ -30,13 +30,13 @@ Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout']);
 
 
-//Route::group(['middleware' => 'auth:api'], function(){
+Route::group(['middleware' => 'auth:api'], function(){
     Route::get('articles', [ArticleController::class,'index']);
     Route::get('articles/{article}', [ArticleController::class,'show']);
     Route::post('articles', [ArticleController::class,'store']);
     Route::put('articles/{article}', [ArticleController::class,'update']);
     Route::delete('articles/{article}', [ArticleController::class,'delete']);
 
-//});
+});
 
 
