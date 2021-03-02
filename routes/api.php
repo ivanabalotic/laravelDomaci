@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Model\User;
 use App\Model\Article;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -19,24 +20,35 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Auth::routes();
 
-Route::post('register', [RegisterController::class, 'register']);
-
-Route::post('login', [LoginController::class, 'login']);
-
-Route::post('logout', [LoginController::class, 'logout']);
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
-Route::group(['middleware' => 'auth:api'], function(){
-    Route::get('articles', [ArticleController::class,'index']);
-    Route::get('articles/{article}', [ArticleController::class,'show']);
-    Route::post('articles', [ArticleController::class,'store']);
-    Route::put('articles/{article}', [ArticleController::class,'update']);
-    Route::delete('articles/{article}', [ArticleController::class,'delete']);
+    
+// Route::post('logout', [LoginController::class, 'logout'])->name('apiLogout');
 
-});
+
+// Route::post('register', [RegisterController::class, 'register'])->name('apiRegister');
+
+// Route::post('login', [LoginController::class, 'login'])->name('apiLogin');
+
+    Route::get('articles', [ArticleController::class,'index'])->name('getArticles');
+    Route::get('articlesJoin', [ArticleController::class,'indexJoin'])->name('getArticlesAndComments');
+    Route::get('articles/{article}', [ArticleController::class,'show'])->name('getArticle');
+    Route::post('articles', [ArticleController::class,'store'])->name('storeArticles');
+    Route::put('articles/{article}', [ArticleController::class,'update'])->name('updateArticle');
+    Route::delete('articles/{article}', [ArticleController::class,'delete'])->name('deleteArticle');
+
+    Route::get('comments', [CommentController::class,'index'])->name('getComments');
+    Route::get('commentsJoin/{article}', [CommentController::class,'indexJoin'])->name('getCommentsForArticle');
+    Route::get('comments/{comment}', [CommentController::class,'show'])->name('getComment');
+    Route::post('comments', [CommentController::class,'store'])->name('storeComments');
+    Route::put('comments/{comment}', [CommentController::class,'update'])->name('updateComment');
+    Route::delete('comments/{comment}', [CommentController::class,'delete'])->name('deleteComment');
+
+
 
 

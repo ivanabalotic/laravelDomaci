@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('apiLogin') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -53,7 +53,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" onclick="logIN()">
                                     {{ __('Login') }}
                                 </button>
 
@@ -71,3 +71,14 @@
     </div>
 </div>
 @endsection
+<script>
+    function logIN() {
+        // //var response = JSON.parse(response)
+        // let url = "{{ route('home','response') }}"
+        // console.log(url);
+        // url = url.replace('response', response);
+        // document.location.href=url;
+        console.log("aa");
+        
+    }
+</script>

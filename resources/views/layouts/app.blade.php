@@ -75,4 +75,18 @@ function submitArticle() {
     url = url.replace(':id', id);
     document.location.href = url;
 }
+
+function deleteArticle(id) {
+    let url = "{{ route('deleteArticleWeb', ':id') }}";
+    url = url.replace(':id', id);
+    console.log(url);
+    //document.location.href = url;
+}
+
+function pisanjeKom() {
+    var forma = document.getElementById("pisanjeKomentara");
+        forma.style.display = "block";
+    window.scrollTo(0,document.body.scrollHeight);
+    console.log(forma.style);
+}
 </script>

@@ -22,11 +22,10 @@ class ArticlesTableSeeder extends Seeder
 
         $faker = \Faker\Factory::create();
     
-        for($i = 0; $i < 50; $i++) {
+        for($i = 0; $i < 20; $i++) {
             Article::create([
                 'title' => $faker->sentence,
                 'body' => $faker->paragraph,
-                'user_id' => rand(14,26),
             ]);
         }
     }
